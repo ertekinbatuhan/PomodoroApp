@@ -118,9 +118,9 @@ struct Home: View {
                         showHourSheet = true
                     }
                     .actionSheet(isPresented: $showHourSheet) {
-                        ActionSheet(title: Text("Select Hours"), buttons: actionSheetOptions(maxValue: 12, hint: "hr") { value in
+                        createActionSheet(title: "Select Hours", maxValue: 12, hint: "hr") { value in
                             viewModel.model.hours = value
-                        })
+                        }
                     }
                 
                 Text("\(viewModel.model.minutes) min")
@@ -136,9 +136,9 @@ struct Home: View {
                         showMinuteSheet = true
                     }
                     .actionSheet(isPresented: $showMinuteSheet) {
-                        ActionSheet(title: Text("Select Minutes"), buttons: actionSheetOptions(maxValue: 60, hint: "min") { value in
+                        createActionSheet(title: "Select Minutes", maxValue: 60, hint: "min") { value in
                             viewModel.model.minutes = value
-                        })
+                        }
                     }
                 
                 Text("\(viewModel.model.seconds) sec")
@@ -154,9 +154,9 @@ struct Home: View {
                         showSecondSheet = true
                     }
                     .actionSheet(isPresented: $showSecondSheet) {
-                        ActionSheet(title: Text("Select Seconds"), buttons: actionSheetOptions(maxValue: 60, hint: "sec") { value in
+                        createActionSheet(title: "Select Seconds", maxValue: 60, hint: "sec") { value in
                             viewModel.model.seconds = value
-                        })
+                        }
                     }
             }
             .padding(.top, 20)
@@ -184,16 +184,6 @@ struct Home: View {
                 RoundedRectangle(cornerRadius: 10, style: .continuous)
                     .fill(Color(.systemGray6)).ignoresSafeArea()
             }
-    }
-    
-    func actionSheetOptions(maxValue: Int, hint: String, onClick: @escaping (Int) -> ()) -> [ActionSheet.Button] {
-        var buttons: [ActionSheet.Button] = (0...maxValue).map { value in
-            .default(Text("\(value) \(hint)")) {
-                onClick(value)
-            }
-        }
-        buttons.append(.cancel())
-        return buttons
     }
 }
 

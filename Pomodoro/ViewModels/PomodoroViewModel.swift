@@ -76,5 +76,6 @@ class PomodoroViewModel: ObservableObject {
         model.totalSeconds = 0
         model.staticTotalSeconds = 0
     }
+    
 }
 
